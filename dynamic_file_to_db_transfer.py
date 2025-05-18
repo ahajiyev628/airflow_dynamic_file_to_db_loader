@@ -6,7 +6,7 @@ from pyspark.sql import SparkSession
 def main(source_path, target_s3_path):
     spark = SparkSession.builder \
         .appName("ExcelToParquetTransfer") \
-        .config("spark.jars.packages", "com.crealytics:spark-excel_2.12:0.13.7") \ 
+        .config("spark.jars.packages", "com.crealytics:spark-excel_2.12:0.13.7") \
         .config("spark.hadoop.fs.s3a.endpoint", "http://minio-external.default.svc.cluster.local:9000") \
         .config("spark.hadoop.fs.s3a.access.key", "adminic") \
         .config("spark.hadoop.fs.s3a.secret.key", "adminic123") \
