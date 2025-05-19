@@ -38,7 +38,7 @@ def main(source_path, target_s3_path):
                         and end_time is null
                         and date(log_time)=date(sysdate)"""
     
-    cnt_query = "(select 1 from dual) t1"
+    cnt_query = "(select 1 ) t1"
     df = spark.read \
         .format("jdbc") \
         .option("url", "jdbc:postgresql://postgres-external.default.svc.cluster.local:5433/airflow") \
