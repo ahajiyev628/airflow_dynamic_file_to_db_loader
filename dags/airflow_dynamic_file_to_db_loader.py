@@ -4,7 +4,7 @@ import json
 import logging
 from datetime import datetime, timedelta
 from airflow import DAG
-from airflow.decorators import taskss
+from airflow.decorators import task
 from airflow.models import Variable
 from airflow.providers.amazon.aws.hooks.s3 import S3Hook
 from airflow.operators.bash import BashOperator
