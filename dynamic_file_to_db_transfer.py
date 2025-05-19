@@ -39,7 +39,7 @@ def main(source_path, target_s3_path):
     
     df = spark.read \
         .format("jdbc") \
-        .option("url", "jdbc:postgresql://postgres-external.default.svc.cluster.local:5432/airflow") \
+        .option("url", "jdbc:postgresql://postgres-external.default.svc.cluster.local:5433/airflow") \
         .option("user", "airflow") \
         .option("password", "airflow") \
         .option("dbtable", f"({plsql_block}) as dummy") \
