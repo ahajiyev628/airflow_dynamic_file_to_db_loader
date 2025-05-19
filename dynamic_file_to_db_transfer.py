@@ -36,7 +36,7 @@ def main(source_path, target_s3_path):
                         where source_name = '{source_path}'
                         and target_name = '{target_s3_path}'
                         and end_time is null
-                        and log_time=trunc(sysdate)"""
+                        and trunc(log_time)=trunc(sysdate)"""
     
     df = spark.read \
         .format("jdbc") \
