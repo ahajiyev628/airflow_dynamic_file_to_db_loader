@@ -25,6 +25,7 @@ def main(source_path, target_s3_path):
     print(f"Read data from s3a://ahajiyev/{source_path}:")
     df.show()
     cnt = df.count()
+    cnt = int(cnt)
 
     df.write.mode("overwrite").parquet(f"s3a://ahajiyev/{target_s3_path}")
 
