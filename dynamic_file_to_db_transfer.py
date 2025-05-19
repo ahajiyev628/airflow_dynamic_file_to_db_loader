@@ -23,11 +23,29 @@ def main(source_path, target_s3_path):
         .load(f"s3a://ahajiyev/{source_path}")
 
     print(f"Read data from s3a://ahajiyev/{source_path}:")
-    df.show(5)
+    df.show()
+    cnt = df.count()
 
     df.write.mode("overwrite").parquet(f"s3a://ahajiyev/{target_s3_path}")
 
     print(f"Successfully written to s3a://ahajiyev/{target_s3_path}")
+
+    plsql_block = f"""update airflow_daily_log 
+                        set row_count = '{cnt}'
+                        where source_name = '{source_path}'
+                        and target_name = '{target_s3_path}'
+                        and end_time is null
+                        and log_time=trunc(sysdate)"""
+    
+    df = spark.read \
+        .format("jdbc") \
+        .option("url", "jdbc:postgresql://postgres-external.default.svc.cluster.local:5432/airflow") \
+        .option("user", "airflow") \
+        .option("password", "airflow") \
+        .option("dbtable", f"({plsql_block}) as dummy") \
+        .load()
+    df.show()
+
     spark.stop()
 
 if __name__ == "__main__":
