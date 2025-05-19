@@ -36,7 +36,7 @@ def main(source_path, target_s3_path):
                         where source_name = '{source_path}'
                         and target_name = '{target_s3_path}'
                         and end_time is null
-                        and date(log_time)=date(sysdate)"""
+                        and date(log_time)=date(current_date)"""
     
     cnt_query = "(select 1 ) t1"
     df = spark.read \
