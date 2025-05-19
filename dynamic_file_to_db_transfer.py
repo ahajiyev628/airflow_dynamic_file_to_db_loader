@@ -32,18 +32,20 @@ def main(source_path, target_s3_path):
     print(f"Successfully written to s3a://ahajiyev/{target_s3_path}")
 
     plsql_block = f"""update airflow_daily_log 
-                        set row_count = '{cnt}'
+                        set row_count = {cnt}
                         where source_name = '{source_path}'
                         and target_name = '{target_s3_path}'
                         and end_time is null
                         and date(log_time)=date(sysdate)"""
     
+    cnt_query = "(select 1 from dual) t1"
     df = spark.read \
         .format("jdbc") \
         .option("url", "jdbc:postgresql://postgres-external.default.svc.cluster.local:5433/airflow") \
         .option("user", "airflow") \
         .option("password", "airflow") \
-        .option("dbtable", f"({plsql_block}) as dummy") \
+        .option("dbtable", cnt_query) \
+        .option("sessionInitStatement", plsql_block) \
         .load()
     df.show()
 
