@@ -88,7 +88,7 @@ def merge_end_time(context):
         UPDATE airflow_daily_log
         SET end_time = %(end_time)s
         WHERE date(log_time) = date(CURRENT_DATE)
-        and try_number = %(try_number)s
+        and end_time is null
         AND source_name = %(source)s
         AND target_name = %(target)s
     """
