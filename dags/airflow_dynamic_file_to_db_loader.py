@@ -93,7 +93,7 @@ def merge_end_time(context):
         AND target_name = %(target)s
     """
     values = {
-        'end_time': ti.end_time,
+        'end_time': ti.end_date,
         'source': params['source_file_name'],
         'target': params['target_table_name']
     }
