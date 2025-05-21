@@ -1,9 +1,17 @@
+import os
 import sys
+import json
 import argparse
 
 from pyspark.sql import SparkSession
 
 def main(source_path, target_s3_path):
+    pg_user = os.environ.get("POSTGRES_USER")
+    pg_password = os.environ.get("POSTGRES_PASSWORD")
+    pg_host = os.environ.get("POSTGRES_HOST", "postgres-external.default.svc.cluster.local")
+    pg_port = os.environ.get("POSTGRES_PORT", "5433")
+    pg_db = os.environ.get("POSTGRES_DB", "airflow")
+
     spark = SparkSession.builder \
         .appName("ExcelToParquetTransfer") \
         .config("spark.jars.packages", "com.crealytics:spark-excel_2.12:0.13.7") \
@@ -14,7 +22,6 @@ def main(source_path, target_s3_path):
         .config("spark.hadoop.fs.s3a.impl", "org.apache.hadoop.fs.s3a.S3AFileSystem") \
         .config("spark.hadoop.fs.s3a.aws.credentials.provider", "org.apache.hadoop.fs.s3a.SimpleAWSCredentialsProvider") \
         .getOrCreate()
-
 
     df = spark.read \
         .format("com.crealytics.spark.excel") \
@@ -37,18 +44,21 @@ def main(source_path, target_s3_path):
                         and target_name = '{target_s3_path}'
                         and end_time is null
                         and date(log_time)=date(current_date)"""
-    
+
     cnt_query = "(select 1 ) t1"
+
+    jdbc_url = f"jdbc:postgresql://{pg_host}:{pg_port}/{pg_db}"
+
     df = spark.read \
         .format("jdbc") \
-        .option("url", "jdbc:postgresql://postgres-external.default.svc.cluster.local:5433/airflow") \
-        .option("user", "airflow") \
-        .option("password", "airflow") \
+        .option("url", jdbc_url) \
+        .option("user", pg_user) \
+        .option("password", pg_password) \
         .option("dbtable", cnt_query) \
         .option("sessionInitStatement", plsql_block) \
         .load()
-    df.show()
 
+    df.show()
     spark.stop()
 
 if __name__ == "__main__":
