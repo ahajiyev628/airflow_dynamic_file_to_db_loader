@@ -216,6 +216,9 @@ with DAG(
                 "python /tmp/dynamic_file_to_db_transfer.py --source {{ params.source_file_name }} --target {{ params.target_table_name }}"
             )
         ],
+        env_from=[
+            V1EnvFromSource(secret_ref=V1SecretEnvSource(name="postgres-secret"))
+        ],
         get_logs=True,
         is_delete_operator_pod=False,
         map_index_template="{{ params.source_file_name }}",
