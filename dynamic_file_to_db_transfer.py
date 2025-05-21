@@ -8,9 +8,18 @@ from pyspark.sql import SparkSession
 def main(source_path, target_s3_path):
     pg_user = os.environ.get("POSTGRES_USER")
     pg_password = os.environ.get("POSTGRES_PASSWORD")
-    pg_host = os.environ.get("POSTGRES_HOST", "postgres-external.default.svc.cluster.local")
-    pg_port = os.environ.get("POSTGRES_PORT", "5433")
-    pg_db = os.environ.get("POSTGRES_DB", "airflow")
+    pg_host = os.environ.get("POSTGRES_HOST")
+    pg_port = os.environ.get("POSTGRES_PORT")
+    pg_db = os.environ.get("POSTGRES_DB")
+
+    print("PostgreSQL Config:")
+    print(f"HOST={pg_host}")
+    print(f"PORT={pg_port}")
+    print(f"DB={pg_db}")
+    print(f"USER={pg_user}")
+    print(pg_password)
+    print(f"URL=jdbc:postgresql://{pg_host}:{pg_port}/{pg_db}")
+        
 
     spark = SparkSession.builder \
         .appName("ExcelToParquetTransfer") \
