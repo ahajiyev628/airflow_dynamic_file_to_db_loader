@@ -8,6 +8,7 @@ from airflow.decorators import task
 from airflow.models import Variable
 from airflow.providers.amazon.aws.hooks.s3 import S3Hook
 from airflow.operators.bash import BashOperator
+from kubernetes.client import V1EnvFromSource, V1SecretEnvSource
 from airflow.providers.cncf.kubernetes.operators.pod import KubernetesPodOperator
 from airflow.providers.postgres.hooks.postgres import PostgresHook
 
