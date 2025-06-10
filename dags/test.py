@@ -23,7 +23,7 @@ with DAG (
     start_task = DummyOperator(task_id = "start_task")
 
     hello_task = PythonOperator(task_id ="hello_task",
-                                python_collable = test)
+                                python_callable = test)
     
     end_task = DummyOperator(task_id = "end_task")
 
