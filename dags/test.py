@@ -20,12 +20,12 @@ with DAG (
     start_date = datetime(2025, 4, 11),
     catchup = False
 ) as dag:
-    start_task = DummyOperator("start_task")
+    start_task = DummyOperator(task_id = "start_task")
 
-    hello_task = PythonOperator("hello_task",
+    hello_task = PythonOperator(task_id ="hello_task",
                                 python_collable = test)
     
-    end_task = DummyOperator("end_task")
+    end_task = DummyOperator(task_id = "end_task")
 
     start_task >> hello_task >> end_task
 
