@@ -1,4 +1,4 @@
-from airflow import Dag
+from airflow import DAG
 from airflow.operators.python import PythonOperator
 from airflow.operators.dummy import DummyOperator
 from datetime import datetime, timedelta
@@ -12,7 +12,7 @@ def test():
     print("Hello World!")
 
 
-with Dag (
+with DAG (
     dag_id = "test_dag",
     description = "sample dag",
     default_args = default_args,
