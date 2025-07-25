@@ -16,7 +16,7 @@ def hello_airflow():
 with DAG (
   dag_id = "test_dag",
   description = "Demo dag",
-  scheduler_interval = "5 0 * * *",
+  schedule_interval = "5 0 * * *",
   default_args = default_args,
   start_date = datetime(2025,7,7)
 ) as dag:
