@@ -29,4 +29,4 @@ with DAG (
   hello_airflow_task = PythonOperator(task_id="hello_airflow_task",
                                      python_callable = hello_airflow)
 
-  start_task >> hello_world_task >> hello_airflow_task >> end_task
+  start_task >> [hello_world_task, hello_airflow_task] >> end_task
