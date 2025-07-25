@@ -24,9 +24,9 @@ with DAG (
   end_task = DummyOperator(task_id="end_task")
 
   hello_world_task = PythonOperator(task_id="hello_world_task",
-                                     python_collable = hello_world)
+                                     python_callable = hello_world)
 
   hello_airflow_task = PythonOperator(task_id="hello_airflow_task",
-                                     python_collable = hello_airflow)
+                                     python_callable = hello_airflow)
 
   start_task >> hello_world_task >> hello_airflow_task >> end_task
