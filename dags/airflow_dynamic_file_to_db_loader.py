@@ -207,6 +207,7 @@ with DAG(
     transfer_task = KubernetesPodOperator.partial(
         task_id="transfer_files",
         name="excel-to-parquet",
+        kubernetes_conn_id="kube_conn"
         namespace="default",
         image="ahajiyev/pyspark-with-awscli",
         cmds=["sh", "-c"],
