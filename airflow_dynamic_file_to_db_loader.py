@@ -8,11 +8,6 @@ from airflow.models import Variable
 from airflow.providers.amazon.aws.hooks.s3 import S3Hook
 from airflow.providers.cncf.kubernetes.operators.pod import KubernetesPodOperator
 from airflow.providers.postgres.hooks.postgres import PostgresHook
-# Join Zoom Meeting 
-# https://ibar.zoom.us/j/96932852138?pwd=Wsdm6HQj5QpPeEsnlU4NH2IpAcxBKh.1 
-# Meeting ID: 969 3285 2138 
-# Passcode: 187990 
-
 
 FILES_DIRECTORY = "./files/test/"
 
