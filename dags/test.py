@@ -20,6 +20,7 @@ with DAG (
   default_args = default_args,
   start_date = datetime(2025,7,7)
 ) as dag:
+  
   start_task = DummyOperator(task_id="start_task")
   end_task = DummyOperator(task_id="end_task")
 
