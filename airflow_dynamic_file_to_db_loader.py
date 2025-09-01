@@ -35,6 +35,7 @@ def merge_task_state(context, state):
     ti = context['task_instance']
     params = context['params']  # ✅ Corrected
 
+    
     query = """
         UPDATE airflow_daily_log
         SET
