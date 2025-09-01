@@ -6,7 +6,6 @@ from airflow.operators.dummy import DummyOperator
 default_args = {
   "owner": "airflow"
 }
-
 def hello_world():
   print("Hello world!")
 
