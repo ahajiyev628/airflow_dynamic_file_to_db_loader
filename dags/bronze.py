@@ -7,7 +7,7 @@ import os
 import shutil
 
 LOCAL_DIR = "/opt/airflow/files/data"
-FILENAME = "card_trasactions.csv"
+FILENAME = "card_transactions.csv"
 
 BUCKET_NAME = "bronze"
 MINIO_CONN_ID = "minio_conn"
