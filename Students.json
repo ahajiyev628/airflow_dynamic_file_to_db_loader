@@ -1,0 +1,87 @@
+
+{
+    "students": [
+      {
+        "studentId": 1,
+        "firstName": "Bayram",
+        "lastName": "Ələkbərzadə",
+        "subjects": [
+          {
+            "subject": "SQL",
+            "exams": [
+              { "type": "assignment", "score": "88.5", "examDate": "10/09/2025" },
+              { "type": "quiz", "score": "80.0", "examDate": "2025-09-01" }
+            ]
+          },
+          {
+            "subject": "Python",
+            "exams": [
+              { "type": "assignment", "score": 90, "examDate": "2025.10.11" }
+            ]
+          }
+        ]
+      },
+      {
+        "studentId": 2,
+        "firstName": "Tural",
+        "lastName": "Bürcəliyev",
+        "subjects": [
+          {
+            "subject": "SQL",
+            "exams": [
+              { "type": "assignment", "score": 85, "examDate": "02/09/2025" },
+              { "type": "quiz", "score": "90", "examDate": "2025-09-14" }
+            ]
+          },
+          {
+            "subject": "Python",
+            "exams": [
+              { "type": "assignment", "score": "88", "examDate": "2025.10.13" },
+              { "type": "quiz", "score": 75, "examDate": "2025.10.14" }
+            ]
+          }
+        ]
+      },
+      {
+        "studentId": 3,
+        "firstName": "Saleh",
+        "lastName": "Salayev",
+        "subjects": [
+          {
+            "subject": "SQL",
+            "exams": [
+              { "type": "assignment", "score": "80", "examDate": "04/09/2025" },
+              { "type": "quiz", "score": 95, "examDate": "2025-09-06" }
+            ]
+          },
+          {
+            "subject": "Python",
+            "exams": [
+              { "type": "quiz", "score": "70", "examDate": "2025.10.13" }
+            ]
+          }
+        ]
+      },
+      {
+        "studentId": 4,
+        "firstName": "Həsən",
+        "lastName": "Camallı",
+        "subjects": [
+          {
+            "subject": "SQL",
+            "exams": [
+              { "type": "assignment", "score": 100, "examDate": "12/09/2025" },
+              { "type": "quiz", "score": 50, "examDate": "2025-09-12" }
+            ]
+          },
+          {
+            "subject": "Python",
+            "exams": [
+              { "type": "assignment", "score": "92", "examDate": "2025.10.15" },
+              { "type": "quiz", "score": "80", "examDate": "2025.10.12" }
+            ]
+          }
+        ]
+      }
+    ]
+  }
